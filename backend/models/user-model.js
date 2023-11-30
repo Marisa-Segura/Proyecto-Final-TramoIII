@@ -7,6 +7,7 @@ const UserSchema = new Schema({
     lowercase: true,
     required: true,
     unique: true,
+    trim: true,
     minlength: [3, 10],
   },
   password: {
@@ -17,6 +18,7 @@ const UserSchema = new Schema({
     type: String,
     required: true,
     unique: true,
+    trim: true,
   },
   avatarUrl: {
     type: String,
@@ -35,7 +37,7 @@ const UserSchema = new Schema({
 const UserModel = model("User", UserSchema);
 const createNewUser = async ({ name, password, email, avatarUrl }) => {
   const hashedPassword = await bcrypt.hash(password, 10);
-  const newUserInfo = {
+  const NewUserInfo = {
     name,
     password: hashedPassword,
     email,
